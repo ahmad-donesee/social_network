@@ -70,6 +70,7 @@ class Post(models.Model):
         image --> for pictuer
         video --> for uplode video
         created ---> date of created
+        
     """
     post=models.ForeignKey(User,on_delete=models.CASCADE,related_name='post',blank=True,null=True)
     profile_post=models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='profile_post',blank=True,null=True)

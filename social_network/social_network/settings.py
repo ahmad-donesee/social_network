@@ -31,15 +31,34 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.apps.AppsConfig',
+    'chat.apps.ChatConfig',
     'rest_framework',
+    "phonenumber_field",
+    'embed_video',
+    # "accounts",
+    'import_export',
+    'countries_states_cities',
+    
 ]
-
+LANGUAGES = [
+    ("en", "English"),
+    ("ko", "Korean"),
+    ("ja", "Japanese"),
+    ('zh-hans', 'Simplified Chinese'),  # 간체 중국어
+    ('zh-hant', 'Traditional Chinese'),  # 번체 중국어
+    ("es", "Spanish"),
+    ("ru", "Russian"),
+    ("ar", "Arabic"),
+    ('fa','Persian'),
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,7 +74,7 @@ ROOT_URLCONF = 'social_network.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/"templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,7 +137,41 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles' # Typically outside the project directory
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # Project-level static files
+]
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# LOGIN_URL ='/main_view/' #'/login/'  # Replace with your desired login URL
+# LOGOUT_URL ='/' #'/logout/' # Replace with your desired logout URL
+
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER ='ahmaddonesee@gmail.com' #sender's email-id
+# EMAIL_HOST_PASSWORD ='@BGFHweofki34aM' #password associated with above email-id (not the regular password)
+
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    
+    'django.template.context_processors.request',
+)
